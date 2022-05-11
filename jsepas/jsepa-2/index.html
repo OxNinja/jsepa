@@ -519,6 +519,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#tabsspace-length" class="md-nav__link">
+    Tabs/space length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#expanded-syntax" class="md-nav__link">
     Expanded syntax
   </a>
@@ -541,6 +548,74 @@
   <a href="#variables" class="md-nav__link">
     Variables
   </a>
+  
+    <nav class="md-nav" aria-label="Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    Naming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaring" class="md-nav__link">
+    Declaring
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    Operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strict-comparisons" class="md-nav__link">
+    Strict comparisons
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-tests" class="md-nav__link">
+    Boolean tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplify-if-possible" class="md-nav__link">
+    Simplify if possible
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -565,13 +640,33 @@
 <h2 id="introduction">Introduction</h2>
 <p>This JSEPA aims to provide some general and simple guidelines for anyone. Some more specific recommandations are also yielded here.</p>
 <h2 id="general-guidelines">General guidelines</h2>
+<p>The guidelines provided are here to homogenize the codebase of any application: <strong>every files, every lines, have to look like they were writen by one and only one person, regardless of the number of collaborators.</strong></p>
+<h3 id="tabsspace-length">Tabs/space length</h3>
+<p>According to the knowledge we have at the time writing this text, there is no standard size for indentation. But one agreement emerged from all the sources we read: all the code must have and keep the same tab/space size.</p>
 <h3 id="expanded-syntax">Expanded syntax</h3>
+<p>It is better to use an expanded syntax in JavaScript:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">✅ Expanded</label><label for="__tabbed_1_2">❌ Not expanded</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">myFunc</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;My function here&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mf">3</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">myFunc</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;My function here&quot;</span><span class="p">);</span> <span class="k">return</span> <span class="mf">3</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>As both syntaxes have the same result, it is preffered to use the expanded one, for readability and understanding the code.</p>
 <h3 id="comments">Comments</h3>
 <p>A one-line comment in JavaScript is represented by a double slash <code>//</code> followed by a single space and the content of the comment.</p>
 <p>For a better understanding and reading, a one-line commment must be on one separated line of the code it is commenting:</p>
 <p>A multi-line comment is represented by a block containing the content of the comment and surrounded by <code>/*</code> (comment opener) and <code>*/</code> (comment closer).</p>
 <p>For better reading, a multi-line comment must have its comment lines starting with an asterisk (<code>*</code>), which must also be aligned with the above (previous) one. The multi-line comment must and with the closing tag (<code>*/</code>) in a separated line of the last line of comment, and its asterisk must be aligned with the previous one as well.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">✅ //</label><label for="__tabbed_1_2">❌ //</label><label for="__tabbed_1_3">✅ /*</label><label for="__tabbed_1_4">❌ /*</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">✅ //</label><label for="__tabbed_2_2">❌ //</label><label for="__tabbed_2_3">✅ /*</label><label for="__tabbed_2_4">❌ /*</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1">// This variabe does x...</span>
@@ -612,11 +707,124 @@
 </div>
 </div>
 <h2 id="variables">Variables</h2>
+<h3 id="naming">Naming</h3>
+<p>The naming convention in JavaScript for variables is lowerCamelCase, and using a self-explaining name is a must-do (but don't overdo it):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
+<span class="kd">const</span> <span class="nx">myAnimal</span> <span class="o">=</span> <span class="s2">&quot;dog&quot;</span><span class="p">;</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">&quot;cat&quot;</span><span class="p">;</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">const</span> <span class="nx">MY_ANIMAL</span> <span class="o">=</span> <span class="s2">&quot;bird&quot;</span><span class="p">;</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">const</span> <span class="nx">theNameOfMyFavouriteAnimalInTheHouseIsTheFollowing</span> <span class="o">=</span> <span class="s2">&quot;Oliver&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>It is also preffered to name the variabes according to its purpose:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Booleans</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use one of the prefixes <code>is</code>, <code>are</code> or event <code>has</code> to explicit the boolean variable:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">isValid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">areCarsWorking</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">hasBeenHere</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="declaring">Declaring</h3>
+<p>To declare variables, the intended way is to use either the <code>const</code> or <code>let</code> keyword. Each one have its own usecase:</p>
+<ul>
+<li><code>const</code>: declaring a constant. It's value is not meant to change. Scope: block.</li>
+<li><code>let</code>: declaring a variable. Scope: block.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
+<span class="kd">const</span> <span class="nx">myAnimal</span> <span class="o">=</span> <span class="s2">&quot;dog&quot;</span><span class="p">;</span>
+
+<span class="c1">// ✅ Valid</span>
+<span class="kd">let</span> <span class="nx">myAnimal</span> <span class="o">=</span> <span class="s2">&quot;hamster&quot;</span><span class="p">;</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">var</span> <span class="nx">myAnimal</span> <span class="o">=</span> <span class="s2">&quot;cat&quot;</span><span class="p">;</span>
+</code></pre></div>
+<details class="question" open="open">
+<summary>Why the <code>var</code> keyword is invalid?</summary>
+<p>Well, it is not invalid, but the main purpose of not using it is its scope. <code>var</code> is function-scopped, while both <code>const</code> and <code>let</code> are block-scopped. In addition, <code>var</code> is writeable, so there is no warranty for constants defined with <code>var</code>, as per definition, are not read-only.</p>
+</details>
+<h2 id="functions">Functions</h2>
+<h2 id="classes">Classes</h2>
+<h2 id="operations">Operations</h2>
+<h3 id="strict-comparisons">Strict comparisons</h3>
+<p>To compare values of two variables, one must prefer to use strict comparison operations:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">name1</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">name2</span> <span class="o">=</span> <span class="s2">&quot;James&quot;</span><span class="p">;</span>
+
+<span class="c1">// ✅ Valid</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">name1</span> <span class="o">===</span> <span class="nx">name2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">name1</span> <span class="o">!==</span> <span class="nx">name2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">name1</span> <span class="o">==</span> <span class="nx">name2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">name1</span> <span class="o">!=</span> <span class="nx">name2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="boolean-tests">Boolean tests</h3>
+<p>For boolean tests, it it preffered to use the shortcodes of expressions instead of explicit testing the values:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">myVar</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">doThings</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">doOtherThing</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">myVar</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">doThings</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">doOtherThing</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="simplify-if-possible">Simplify if possible</h3>
+<p>For commom operations, it is sometimes possible to simplify the code:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">❌ Not optimized</label><label for="__tabbed_4_2">✅ Optimized</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">myTest</span><span class="p">(</span><span class="nx">myVar</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">myVar</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">myTest</span><span class="p">(</span><span class="nx">myVar</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">myVar</span><span class="p">;</span> <span class="c1">// (1)</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>At this point, this function is not realistic, but you get the idea for optimization</li>
+</ol>
+</div>
+</div>
+</div>
 
               
             </article>
           </div>
         </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
         
       </main>
       
@@ -662,7 +870,7 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
     
     
       <script src="../../assets/javascripts/bundle.5a9542cf.min.js"></script>
