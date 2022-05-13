@@ -257,7 +257,161 @@ var myAnimal = "cat";
 
 ## Functions
 
+### Declaring
+
+Never declare a function with the `new Function()` constructor as it uses plain text code evaluation wich may lead to security vulnerabilities:
+
+```js
+// ❌ Don't do that
+
+let a = document.getElementById("a-user-input").value;
+let b = document.getElementById("b-user-input").value;
+let operation = document.getElementById("operator-user-input").value;
+
+const calculate = new Function("a", "b", `return a ${operator} b`);
+```
+
+??? bug "Security advisory"
+    Here the `calculate()` function will compute the result of the provded operation with 2 numbers.
+    An attacker could input as the operator `+(malicious_code)//` instead of just `+` or `-` to achieve execution of some malicious code.
+
+    For better security by design, one should code the above code like so:
+
+    ```js
+    // This is an example of code to avoid using code evaluation,
+    // under no circumstances this shoud be used as a vulnerability-proof code
+    let a = document.getElementById("a-user-input").value;
+    let b = document.getElementById("b-user-input").value;
+    let operation = document.getElementById("operator-user-input").value;
+
+    const calculate = (a=0, b=0, operation='+') => {
+      // Check if a and b are numbers ommited for size of code
+      switch(operation) {
+        case "+":
+          return a+b;
+        case "-":
+          return a-b;
+        default:
+          console.log("Operation not supported yet.");
+          return -1;
+      }
+    }
+    ```
+
+### Async functions
+
+To call an async function inside a non-async function one should use the instant call expression:
+
+```js
+(async function myAsyncFunc() {
+  await doThis();
+  console.log("Done");
+})();
+
+// Or using an anonymous arrow function
+(async () => {
+  await doThis();
+  console.log("Done");
+})();
+```
+
+### Parameters
+
+#### Multiline signature
+
+If a function needs a mutiline signature, all the arguments must be on one separated line of each other:
+
+```js
+// ✅ Valid
+function myFunc(
+  one,
+  two,
+  three,
+  four
+  ) {
+  doThings();
+}
+
+// ❌ Invalid
+function myFunc(one,
+                two,
+                three,
+                four) {
+  doThings();
+}
+
+// ❌ Invalid
+function myFunc( one, two, three, four) {
+  doThings();
+}
+```
+
+#### Default parameters
+
+It is preffered to use the default parameter syntax instead of mutating:
+
+!!! note inline end
+    The order of default parameter is important too: the parameters with default values must be at the end of the list of all parameters.
+
+```js
+// ✅ Valid
+
+function myFunc(value1, value2=3) {
+  return value1 + value2;
+}
+
+// ❌ Invalid
+
+function myFunc(value1, value2) {
+  value1 = value1 || 0;
+
+  if(value2 === void 0) {
+    value2 = 3;
+  }
+
+  return value1 + value2;
+}
+```
+
+#### Parameters reassignment
+
+Never reassign a parameter inside a function, this can lead to unwanted behavious when dealing with the `arguments` object, and cause optimization issues, use variables instead:
+
+```js
+// ✅ Preffered
+function myFunc(a) {
+  let myNewA = a + "My value";
+  return myNewA;
+}
+
+// ❌ Don't do that
+
+function myFunc(a) {
+  a += "My value";
+  return a;
+}
+```
+
+### Arrow functions
+
+Arrow functions can be used -- and this is the preffered way -- to keep the `this` keyword:
+
+!!! tip inline end
+    This trick is in fact the recommanded way to keep the `this` keyword in a class' method.
+
+```js
+function myFunction() {
+  this.value = 0;
+
+  this.otherFunction = (x) => {
+    this.value = x;
+  }
+}
+```
+
 ## Classes
+
+### Naming
 
 Unlike variables, classes uses the PascalCase convention:
 
@@ -273,6 +427,53 @@ class MyClass {
 class myClass {
   constructor() {
     this.value = 1;
+  }
+}
+```
+
+### Methods
+
+#### Methods chaining
+
+Methods can return `this` to encourage methods chaining:
+
+```js
+class Dog {
+  constructor(name) {
+    this.name = name;
+  }
+
+  play() {
+    console.log("Waf!");
+    return this;
+  }
+
+  eat() {
+    console.log("Nom nom nom");
+    return this;
+  }
+
+  sleep() {
+    console.log("Zzzzzz");
+    return this;
+  }
+}
+
+const myDog = new Dog();
+
+myDog.play()
+  .eat()
+  .sleep();
+```
+
+#### Static methods
+
+If a method does not use `this`, it should be marked as a static method:
+
+```js
+class MyClass() {
+  static method() {
+    return 1;
   }
 }
 ```
