@@ -87,11 +87,117 @@ For better reading, a multi-line comment must have its comment lines starting wi
     const myVar = 42;
     ```
 
+### Coding syntax
+
+Here are some examples of coding style to use for different situations. Those examples are here to improve the consistency fo the coding syntax, help for readability and understanding of the code.
+
+=== "Semicolons"
+
+    By design the code should complies with the [`"use strict";`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode) syntax:
+
+    ```js
+    // ✅
+    const myValue = 9;
+    for(let i = 0; i < myValue; i++) {
+      let result = myValue + i;
+      console.log(result);
+    }
+    
+    // ❌
+    const myValue = 9
+    for(let i = 0; i < myValue; i++) {
+      let result = myValue + i
+      console.log(result)
+    }
+    ```
+
+=== "Control statements"
+
+    The specification for control statements goes like so:
+
+    * No space between the keyword (`if`, `while`...) and the opening parenthesis
+    * 1 space between the closing parenthesis and the opening curly bracket
+
+    ```js
+    // ✅
+    if(condition) {
+      code();
+    }
+
+    // ❌
+    if (condition){
+      code();
+    }
+    ```
+
+=== "Spacing"
+
+    Spacing the code with empty lines is mandatory for good-looking and readable code. Here are some simple rules for spacing:
+
+    * 1 empty line between two methods of a class
+    * 2 empty lines around a function
+    * 2 empty lines around a class
+    * 1 empty line after imports/includes (which should be the first lines of a script)
+
+    ??? info
+        The spacing specified here is very inspired by the [PEP-8 convention](https://peps.python.org/pep-0008/) coding style for Python.
+
+    ```js
+    // ✅ Good line spacing
+    class MyClass {
+
+      constructor() {
+        doThings();
+      }
+
+      myMethod() {
+        doThings();
+      }
+
+    }
+
+
+    function doThings() {
+      return 0;
+    }
+
+    // ❌ Bad line spacing
+    class MyClass {
+
+
+      constructor() {
+        doThings();
+      }
+      myMethod() {
+        doThings();
+      }
+    }
+
+    function doThings() {
+      return 0;
+    }
+    ```
+
+### Strings
+
+One must prefer to use template litterals instead of string concatenation for code readability:
+
+```js
+const value = 42;
+const name = "Bob";
+
+// ✅ Template litteral
+console.log(`The value is ${value} and the name is ${name}.`);
+
+// ❌ String concatenation
+console.log("The value is " + value + " and the name is " + name + ".");
+```
+
 ## Variables
 
 ### Naming
 
-The naming convention in JavaScript for variables is lowerCamelCase, and using a self-explaining name is a must-do (but don't overdo it):
+The naming convention in JavaScript for variables is lowerCamelCase, and using a self-explaining name is a must-do (but don't overdo it). Using underscore is also not recommanded:
 
 ```js
 // ✅ Valid
@@ -105,13 +211,22 @@ const MY_ANIMAL = "bird";
 
 // ❌ Invalid
 const theNameOfMyFavouriteAnimalInTheHouseIsTheFollowing = "Oliver";
+
+// ❌ Invalid
+const my_animal = "mouse";
+
+// ❌ Invalid
+const _myAnimal = "horse";
+
+// ❌ Invalid
+const myAnimal__ = "tortoise";
 ```
 
 It is also preffered to name the variabes according to its purpose:
 
 === "Booleans"
 
-    Use one of the prefixes `is`, `are` or event `has` to explicit the boolean variable:
+    Use one of the prefixes `is`, `are` or even `has` to explicit the boolean variable:
 
     ```js
     let isValid = true;
@@ -143,6 +258,24 @@ var myAnimal = "cat";
 ## Functions
 
 ## Classes
+
+Unlike variables, classes uses the PascalCase convention:
+
+```js
+// ✅ Valid
+class MyClass {
+  constructor() {
+    this.value = 1;
+  }
+}
+
+// ❌ Invalid
+class myClass {
+  constructor() {
+    this.value = 1;
+  }
+}
+```
 
 ## Operations
 
@@ -214,3 +347,9 @@ For commom operations, it is sometimes possible to simplify the code:
     ```
     
     1. At this point, this function is not realistic, but you get the idea for optimization
+
+## Code examples
+
+The following projects are not affiliated with the JSEPA, but are good examples to follow:
+
+* Feel free to push projects here.
