@@ -539,6 +539,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#coding-syntax" class="md-nav__link">
+    Coding syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    Strings
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -616,6 +630,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-examples" class="md-nav__link">
+    Code examples
+  </a>
   
 </li>
       
@@ -706,9 +727,107 @@
 </div>
 </div>
 </div>
+<h3 id="coding-syntax">Coding syntax</h3>
+<p>Here are some examples of coding style to use for different situations. Those examples are here to improve the consistency fo the coding syntax, help for readability and understanding of the code.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Semicolons</label><label for="__tabbed_3_2">Control statements</label><label for="__tabbed_3_3">Spacing</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>By design the code should complies with the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode"><code>"use strict";</code></a> syntax:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅</span>
+<span class="kd">const</span> <span class="nx">myValue</span> <span class="o">=</span> <span class="mf">9</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">myValue</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">myValue</span> <span class="o">+</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌</span>
+<span class="kd">const</span> <span class="nx">myValue</span> <span class="o">=</span> <span class="mf">9</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">myValue</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">myValue</span> <span class="o">+</span> <span class="nx">i</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>The specification for control statements goes like so:</p>
+<ul>
+<li>No space between the keyword (<code>if</code>, <code>while</code>...) and the opening parenthesis</li>
+<li>1 space between the closing parenthesis and the opening curly bracket</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">code</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">condition</span><span class="p">){</span>
+  <span class="nx">code</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Spacing the code with empty lines is mandatory for good-looking and readable code. Here are some simple rules for spacing:</p>
+<ul>
+<li>1 empty line between two methods of a class</li>
+<li>2 empty lines around a function</li>
+<li>2 empty lines around a class</li>
+<li>1 empty line after imports/includes (which should be the first lines of a script)</li>
+</ul>
+<details class="info">
+<summary>Info</summary>
+<p>The spacing specified here is very inspired by the <a href="https://peps.python.org/pep-0008/">PEP-8 convention</a> coding style for Python.</p>
+</details>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Good line spacing</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+
+  <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">doThings</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">myMethod</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">doThings</span><span class="p">();</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">doThings</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mf">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Bad line spacing</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+
+
+  <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">doThings</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="nx">myMethod</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">doThings</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">doThings</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mf">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="strings">Strings</h3>
+<p>One must prefer to use template litterals instead of string concatenation for code readability:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="mf">42</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span><span class="p">;</span>
+
+<span class="c1">// ✅ Template litteral</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`The value is </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb"> and the name is </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+
+<span class="c1">// ❌ String concatenation</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;The value is &quot;</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">+</span> <span class="s2">&quot; and the name is &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="variables">Variables</h2>
 <h3 id="naming">Naming</h3>
-<p>The naming convention in JavaScript for variables is lowerCamelCase, and using a self-explaining name is a must-do (but don't overdo it):</p>
+<p>The naming convention in JavaScript for variables is lowerCamelCase, and using a self-explaining name is a must-do (but don't overdo it). Using underscore is also not recommanded:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
 <span class="kd">const</span> <span class="nx">myAnimal</span> <span class="o">=</span> <span class="s2">&quot;dog&quot;</span><span class="p">;</span>
 
@@ -720,12 +839,21 @@
 
 <span class="c1">// ❌ Invalid</span>
 <span class="kd">const</span> <span class="nx">theNameOfMyFavouriteAnimalInTheHouseIsTheFollowing</span> <span class="o">=</span> <span class="s2">&quot;Oliver&quot;</span><span class="p">;</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">const</span> <span class="nx">my_animal</span> <span class="o">=</span> <span class="s2">&quot;mouse&quot;</span><span class="p">;</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">const</span> <span class="nx">_myAnimal</span> <span class="o">=</span> <span class="s2">&quot;horse&quot;</span><span class="p">;</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">const</span> <span class="nx">myAnimal__</span> <span class="o">=</span> <span class="s2">&quot;tortoise&quot;</span><span class="p">;</span>
 </code></pre></div>
 <p>It is also preffered to name the variabes according to its purpose:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Booleans</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Booleans</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Use one of the prefixes <code>is</code>, <code>are</code> or event <code>has</code> to explicit the boolean variable:</p>
+<p>Use one of the prefixes <code>is</code>, <code>are</code> or even <code>has</code> to explicit the boolean variable:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">isValid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">areCarsWorking</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">hasBeenHere</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
@@ -754,6 +882,21 @@
 </details>
 <h2 id="functions">Functions</h2>
 <h2 id="classes">Classes</h2>
+<p>Unlike variables, classes uses the PascalCase convention:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">class</span> <span class="nx">myClass</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="operations">Operations</h2>
 <h3 id="strict-comparisons">Strict comparisons</h3>
 <p>To compare values of two variables, one must prefer to use strict comparison operations:</p>
@@ -792,7 +935,7 @@
 </code></pre></div>
 <h3 id="simplify-if-possible">Simplify if possible</h3>
 <p>For commom operations, it is sometimes possible to simplify the code:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">❌ Not optimized</label><label for="__tabbed_4_2">✅ Optimized</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">❌ Not optimized</label><label for="__tabbed_5_2">✅ Optimized</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">myTest</span><span class="p">(</span><span class="nx">myVar</span><span class="p">)</span> <span class="p">{</span>
@@ -815,6 +958,11 @@
 </div>
 </div>
 </div>
+<h2 id="code-examples">Code examples</h2>
+<p>The following projects are not affiliated with the JSEPA, but are good examples to follow:</p>
+<ul>
+<li>Feel free to push projects here.</li>
+</ul>
 
               
             </article>
