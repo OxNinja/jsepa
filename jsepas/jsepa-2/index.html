@@ -590,12 +590,113 @@
     Functions
   </a>
   
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaring_1" class="md-nav__link">
+    Declaring
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-functions" class="md-nav__link">
+    Async functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiline-signature" class="md-nav__link">
+    Multiline signature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-parameters" class="md-nav__link">
+    Default parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters-reassignment" class="md-nav__link">
+    Parameters reassignment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrow-functions" class="md-nav__link">
+    Arrow functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#classes" class="md-nav__link">
     Classes
   </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming_1" class="md-nav__link">
+    Naming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods-chaining" class="md-nav__link">
+    Methods chaining
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -881,7 +982,135 @@
 <p>Well, it is not invalid, but the main purpose of not using it is its scope. <code>var</code> is function-scopped, while both <code>const</code> and <code>let</code> are block-scopped. In addition, <code>var</code> is writeable, so there is no warranty for constants defined with <code>var</code>, as per definition, are not read-only.</p>
 </details>
 <h2 id="functions">Functions</h2>
+<h3 id="declaring_1">Declaring</h3>
+<p>Never declare a function with the <code>new Function()</code> constructor as it uses plain text code evaluation wich may lead to security vulnerabilities:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ❌ Don&#39;t do that</span>
+
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;a-user-input&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;b-user-input&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">operation</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;operator-user-input&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">calculate</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Function</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="sb">`return a </span><span class="si">${</span><span class="nx">operator</span><span class="si">}</span><span class="sb"> b`</span><span class="p">);</span>
+</code></pre></div>
+<details class="bug">
+<summary>Security advisory</summary>
+<p>Here the <code>calculate()</code> function will compute the result of the provded operation with 2 numbers.
+An attacker could input as the operator <code>+(malicious_code)//</code> instead of just <code>+</code> or <code>-</code> to achieve execution of some malicious code.</p>
+<p>For better security by design, one should code the above code like so:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// This is an example of code to avoid using code evaluation,</span>
+<span class="c1">// under no circumstances this shoud be used as a vulnerability-proof code</span>
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;a-user-input&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;b-user-input&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">operation</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;operator-user-input&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">calculate</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="o">=</span><span class="mf">0</span><span class="p">,</span> <span class="nx">b</span><span class="o">=</span><span class="mf">0</span><span class="p">,</span> <span class="nx">operation</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Check if a and b are numbers ommited for size of code</span>
+  <span class="k">switch</span><span class="p">(</span><span class="nx">operation</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s2">&quot;+&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s2">&quot;-&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nx">a</span><span class="o">-</span><span class="nx">b</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Operation not supported yet.&quot;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="async-functions">Async functions</h3>
+<p>To call an async function inside a non-async function one should use the instant call expression:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">async</span> <span class="kd">function</span> <span class="nx">myAsyncFunc</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">doThis</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">);</span>
+<span class="p">})();</span>
+
+<span class="c1">// Or using an anonymous arrow function</span>
+<span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">doThis</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">);</span>
+<span class="p">})();</span>
+</code></pre></div>
+<h3 id="parameters">Parameters</h3>
+<h4 id="multiline-signature">Multiline signature</h4>
+<p>If a function needs a mutiline signature, all the arguments must be on one separated line of each other:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span>
+  <span class="nx">one</span><span class="p">,</span>
+  <span class="nx">two</span><span class="p">,</span>
+  <span class="nx">three</span><span class="p">,</span>
+  <span class="nx">four</span>
+  <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">doThings</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span><span class="nx">one</span><span class="p">,</span>
+                <span class="nx">two</span><span class="p">,</span>
+                <span class="nx">three</span><span class="p">,</span>
+                <span class="nx">four</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">doThings</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Invalid</span>
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span> <span class="nx">one</span><span class="p">,</span> <span class="nx">two</span><span class="p">,</span> <span class="nx">three</span><span class="p">,</span> <span class="nx">four</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">doThings</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="default-parameters">Default parameters</h4>
+<p>It is preffered to use the default parameter syntax instead of mutating:</p>
+<div class="admonition note inline end">
+<p class="admonition-title">Note</p>
+<p>The order of default parameter is important too: the parameters with default values must be at the end of the list of all parameters.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
+
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span> <span class="nx">value2</span><span class="o">=</span><span class="mf">3</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">value1</span> <span class="o">+</span> <span class="nx">value2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Invalid</span>
+
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span> <span class="nx">value2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">value1</span> <span class="o">=</span> <span class="nx">value1</span> <span class="o">||</span> <span class="mf">0</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="nx">value2</span> <span class="o">===</span> <span class="ow">void</span> <span class="mf">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">value2</span> <span class="o">=</span> <span class="mf">3</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">value1</span> <span class="o">+</span> <span class="nx">value2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="parameters-reassignment">Parameters reassignment</h4>
+<p>Never reassign a parameter inside a function, this can lead to unwanted behavious when dealing with the <code>arguments</code> object, and cause optimization issues, use variables instead:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ✅ Preffered</span>
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">myNewA</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="s2">&quot;My value&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">myNewA</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ❌ Don&#39;t do that</span>
+
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">a</span> <span class="o">+=</span> <span class="s2">&quot;My value&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="arrow-functions">Arrow functions</h3>
+<p>Arrow functions can be used -- and this is the preffered way -- to keep the <code>this</code> keyword:</p>
+<div class="admonition tip inline end">
+<p class="admonition-title">Tip</p>
+<p>This trick is in fact the recommanded way to keep the <code>this</code> keyword in a class' method.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">myFunction</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">otherFunction</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="classes">Classes</h2>
+<h3 id="naming_1">Naming</h3>
 <p>Unlike variables, classes uses the PascalCase convention:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// ✅ Valid</span>
 <span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
@@ -894,6 +1123,44 @@
 <span class="kd">class</span> <span class="nx">myClass</span> <span class="p">{</span>
   <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="methods">Methods</h3>
+<h4 id="methods-chaining">Methods chaining</h4>
+<p>Methods can return <code>this</code> to encourage methods chaining:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nx">Dog</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">play</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Waf!&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">eat</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Nom nom nom&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">sleep</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Zzzzzz&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">myDog</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Dog</span><span class="p">();</span>
+
+<span class="nx">myDog</span><span class="p">.</span><span class="nx">play</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">eat</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">sleep</span><span class="p">();</span>
+</code></pre></div>
+<h4 id="static-methods">Static methods</h4>
+<p>If a method does not use <code>this</code>, it should be marked as a static method:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nx">MyClass</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="nx">method</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mf">1</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
