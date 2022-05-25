@@ -392,6 +392,21 @@ function myFunc(a) {
 }
 ```
 
+#### Named parameters
+
+To use named parameters, the prefered way is to go with objects literals and destructuring:
+
+```js
+// Named params with default value
+function add({a, b:0}={}) {
+    return a + b;
+}
+
+add({a: 1}); // 1
+add({a: 1, b: 1}); // 2
+add({a: 5, b: 3}); // 8
+```
+
 ### Arrow functions
 
 Arrow functions can be used -- and this is the preffered way -- to keep the `this` keyword:
