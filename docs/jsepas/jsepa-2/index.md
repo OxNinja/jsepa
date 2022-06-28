@@ -87,6 +87,42 @@ For better reading, a multi-line comment must have its comment lines starting wi
     const myVar = 42;
     ```
 
+### Docstring
+
+A good code is a documented code, using docstrings in it is a must-have. Using [JSDoc](https://jsdoc.app) synthax is not standard, althrough it is very common and easy.
+
+```js
+/**
+ * This class does things and can be used by A to to B.
+ */
+class MyClass {
+
+ /**
+  * Creates a MyClass instance.
+  * @param {number} x - The x to use.
+  * @param {number} y - The y to use.
+  */
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+
+    /**
+     * This attribute is used by the cass to to things.
+     * @member {number}
+     */
+    this.thing = 3;
+  }
+
+  /**
+   * Method to retreive the x value of an object.
+   * @return {number} x
+   */
+  getX() {
+    return this.x;
+  }
+}
+```
+
 ### Coding syntax
 
 Here are some examples of coding style to use for different situations. Those examples are here to improve the consistency fo the coding syntax, help for readability and understanding of the code.
