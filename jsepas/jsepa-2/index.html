@@ -540,6 +540,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#docstring" class="md-nav__link">
+    Docstring
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#coding-syntax" class="md-nav__link">
     Coding syntax
   </a>
@@ -835,6 +842,38 @@
 </div>
 </div>
 </div>
+<h3 id="docstring">Docstring</h3>
+<p>A good code is a documented code, using docstrings in it is a must-have. Using <a href="https://jsdoc.app">JSDoc</a> synthax is not standard, althrough it is very common and easy.</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * This class does things and can be used by A to to B.</span>
+<span class="cm"> */</span>
+<span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+
+ <span class="cm">/**</span>
+<span class="cm">  * Creates a MyClass instance.</span>
+<span class="cm">  * @param {number} x - The x to use.</span>
+<span class="cm">  * @param {number} y - The y to use.</span>
+<span class="cm">  */</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * This attribute is used by the cass to to things.</span>
+<span class="cm">     * @member {number}</span>
+<span class="cm">     */</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">thing</span> <span class="o">=</span> <span class="mf">3</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Method to retreive the x value of an object.</span>
+<span class="cm">   * @return {number} x</span>
+<span class="cm">   */</span>
+  <span class="nx">getX</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="coding-syntax">Coding syntax</h3>
 <p>Here are some examples of coding style to use for different situations. Those examples are here to improve the consistency fo the coding syntax, help for readability and understanding of the code.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Semicolons</label><label for="__tabbed_3_2">Control statements</label><label for="__tabbed_3_3">Spacing</label></div>
